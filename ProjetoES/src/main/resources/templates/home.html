@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="/ProjetoES/src/main/resources/static/css/style.css" />
-	<link rel="stylesheet" href="/ProjetoES/src/main/resources/static/css/style-animations.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/style-animations.css" />
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" />
 	<style></style>
@@ -18,7 +18,7 @@
 		<div class="container-big flex-hori">
 			<div>
 				<a href="index.html">
-					<img src="/ProjetoES/src/main/resources/static/image/pngs/logo.jpg" alt="Logo" class="logo-topo" />
+					<img src="/image/pngs/logo.jpg" alt="Logo" class="logo-topo" />
 				</a>
 			</div>
 
@@ -26,7 +26,7 @@
 				<a href="#sobre">Sobre</a>
 				<a href="#contato">Contato</a>
 				<a href="#login">Login</a>
-				<a href="#registrar">Registrar</a>
+				<a th:href="@{/cadastro}">Registrar</a>
 			</nav>
 		</div>
 	</header>
@@ -49,7 +49,7 @@
 				</p>
 			</div>
 			<div class="flex-hori">
-				<img src="/ProjetoES/src/main/resources/static/image/pngs/medico.png" alt="Medico" class="hidden" />
+				<img src="/image/pngs/medico.png" alt="Medico" class="hidden" />
 				<div class="div-lista">
 					<h3 class="titulo-lista">
 						AQUI NA NOSSA CLÍNICA VOCÊ VAI ENCONTRAR:
@@ -79,17 +79,17 @@
 
 			<div class="img-areas flex-hori">
 				<figure class="shadow-pop-tl">
-					<img src="/ProjetoES/src/main/resources/static/image/pngs/ortopedia1.png" alt="Imagem de um ortopedista" title="Imagem de um ortopedista" />
+					<img src="/image/pngs/ortopedia1.png" alt="Imagem de um ortopedista" title="Imagem de um ortopedista" />
 					<figcaption><strong>Ortopedia</strong></figcaption>
 				</figure>
 
 				<figure class="shadow-pop-tl">
-					<img src="/ProjetoES/src/main/resources/static/image/pngs/pediatra.png" alt="Imagem de uma pediatra" title="Imagem de uma pediatra" />
+					<img src="/image/pngs/pediatra.png" alt="Imagem de uma pediatra" title="Imagem de uma pediatra" />
 					<figcaption><strong>Pediatria</strong></figcaption>
 				</figure>
 
 				<figure class="shadow-pop-tl">
-					<img src="/ProjetoES/src/main/resources/static/image/pngs/geriatra.png" alt="Imagem de uma geriatra" title="Imagem de uma geriatra" />
+					<img src="/image/pngs/geriatra.png" alt="Imagem de uma geriatra" title="Imagem de uma geriatra" />
 					<figcaption><strong>Geriatria</strong></figcaption>
 				</figure>
 			</div>
@@ -125,7 +125,7 @@
 	</main>
 	<footer class="container-all flex-vert">
 		<div class="flex-vert">
-			<img src="/ProjetoES/src/main/resources/static/image/pngs/logo.jpg" alt="Logo" />
+			<img src="/image/pngs/logo.jpg" alt="Logo" />
 			<p>Telefone e Whatsapp: (85) 99966-5555</p>
 			<p>
 				Endereço: R. Carneiro da Cunha, 180 - Jacarecanga, Fortaleza - CE

@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name= "usuarios")
@@ -28,7 +30,11 @@ public class Usuario {
     private String nome;
     
     private boolean ativo;
+
+    @Temporal(TemporalType.DATE)
     private Date dataNascimento;
+    
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataCadastro;
 
    
