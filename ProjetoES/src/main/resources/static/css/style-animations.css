@@ -1,0 +1,20 @@
+
+
+.shadow-pop-tl:hover {
+	animation: shadow-pop-tl 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) both; 
+}
+
+@keyframes shadow-pop-tl {
+	0% {
+		box-shadow: 0 0 #078438, 0 0 #078438, 0 0 #078438, 0 0 #078438,
+			0 0 #078438, 0 0 #078438, 0 0 #078438, 0 0 #078438;                /* O 0% DEFINI A ANIMAÇÃO QUE O ELEMENTO TERÁ NO INÍCIO, NESTE CASO É DEFINIDO UM BOX-SHADOW */
+		transform: translateX(16) translateY(16);
+	}
+	      /*efeito de sombra e deslocamento*/
+	100% {
+		box-shadow: -1px -1px #078438, -2px -2px #078438, -3px -3px #078438,
+			-4px -4px #078438, -5px -5px #078438, -6px -6px #078438,             /* NO 100% DEFINI A ANIMAÇÃO QUE O ELEMENTO TERÁ NO FINAL, FOI DEFINIDO UM BOX-SHADOW E UMA TRANSFORMAÇÃO DIFERENTE DO INÍCIO */
+			-7px -7px #078438, -8px -8px #078438;
+		transform: translateX(8px) translateY(8px);
+	}
+}

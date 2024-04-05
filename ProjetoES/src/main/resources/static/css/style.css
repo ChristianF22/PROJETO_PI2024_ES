@@ -1,0 +1,190 @@
+:root {
+	--font-color: #7b797f;
+}
+* {
+	font-family: "Source Sans Pro", sans-serif;
+	box-sizing: border-box;
+	color: var(--font-color);
+    scroll-behavior: smooth;
+}
+body,
+html {
+	margin: 0;
+	padding: 0;
+	background-color: #f0feff;
+	background-image: url("/ProjetoES/src/main/resources/static/image/pngs/grid-light.png");
+}
+.flex-hori {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+.flex-vert {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.container-all {
+	width: 100%;
+}
+.container-big {
+	width: 1024px;
+}
+.container-small {
+	width: 600px;
+}
+section h1,
+section h2,
+section h3,
+section p {
+	text-align: center;
+}
+header {
+	background: #078438;
+	height: 70px;
+}
+header .container-big {
+	justify-content: space-between;
+}
+.logo-topo {
+	height: 75px;
+}
+.links-topo {
+	width: 300px;
+	display: flex;
+	justify-content: space-around;
+	font-size: large;
+}
+.links-topo a {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
+.links-topo a:hover {
+	color: #1A330E;
+}
+#banner {
+	height: 500px;
+	background-image: url("/ProjetoES/src/main/resources/static/image/pngs/recepcao.png");
+	background-size: cover;
+	background-position: center;
+}
+
+#banner div {
+	padding: 20px;
+}
+#banner h1 {
+	color: white;
+	font-weight: 500;
+	font-size: 38px;
+	text-align: left;
+}
+.img-areas {
+	justify-content: space-around;
+}
+.img-areas figure {
+	margin: 0;
+	padding: 0;
+	border-radius: 3px;
+	box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.267);
+	margin: 20px;
+}
+.img-areas figcaption {
+	height: 50px;
+	text-align: center;
+	font-size: large;
+	padding: 10px;
+	text-transform: uppercase;
+}
+.img-areas img {
+	height: 200px;
+	transition: 1s;
+}
+.btn-horarios {
+	background-color: #1a330e;
+	width: 130px;
+	height: 40px;
+	margin: 20px;
+}
+.btn-horarios a {
+	text-decoration: none;
+	color: #fff;
+	text-transform: uppercase;
+}
+#contato {
+	width: 100%;
+}
+#contato h3,
+#contato p {
+	margin: 0;
+	padding: 10px;
+}
+.mapa {
+	width: 100%;
+	padding: 20px;
+}
+footer {
+	margin-top: 20px;
+	background-color: #078438;
+	padding: 20px;
+}
+footer img {
+	height: 100px;
+}
+footer a,
+footer p {
+	color: white;
+	margin: 0;
+	padding: 10px;
+}
+
+/*---------MEDIA QUERYS----------*/
+
+@media (max-width: 1024px) {
+	#banner {
+		height: 400px;
+	}
+	.container-big {
+		width: 100%;
+	}
+}
+
+@media (max-width: 768px) {
+	#banner {
+		height: 300px;
+	}
+	.hidden {
+		display: none;
+	}
+	.img-areas {
+		flex-wrap: wrap;
+	}
+}
+@media (max-width: 425px) {
+	header {
+		height: 140px;
+		width: 100%;
+	}
+	header .container-big.flex-hori {
+		flex-direction: column;
+	}
+	.links-topo {
+		border-top: #7b797f42 solid 2px;
+	}
+	#banner {
+		height: 200px;
+	}
+	#banner h1 {
+		font-size: 28px;
+	}
+	.img-areas {
+		flex-direction: column;
+	}
+	#sobre,
+	#contato,
+	#contato div {
+		width: 100%;
+	}
+}
