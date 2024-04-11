@@ -1,0 +1,46 @@
+
+#forgotPasswordForm {
+    display: none; 
+    margin-top: 20px; 
+}
+
+#forgotPasswordForm h2 {
+    margin-bottom: 10px;
+}
+
+#forgotPasswordForm input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#forgotPasswordForm input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#forgotPasswordForm input[type="submit"]:hover {
+    background-color: #078438; 
+}
+
+#resetPasswordMessage {
+    margin-top: 10px; 
+}
+
+.success-message {
+    color: white;
+    background-color: #4CAF50;
+    padding: 10px;
+    margin-top: 5px;
+    display: none;
+}
+
+

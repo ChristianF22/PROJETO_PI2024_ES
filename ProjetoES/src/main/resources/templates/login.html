@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/redefinirSenha.css">
 </head>
 <body>
     <div class="login-container">
@@ -15,8 +16,23 @@
             <input type="submit" value="Login">
         </form>
         <p id="errorMessage" style="color: red;"></p>
-    </div>
+        <a href="" id="forgotPasswordButton">Esqueceu a senha?</a>
+    
+        <div id="forgotPasswordForm" style="display: none;">
+            <h2>Redefinir Senha</h2>
+            <form id="resetPasswordForm" th:action="@{/esquecerSenha}" method="post">
+                <input type="text" id="login" name="login" placeholder="Login" required><br>
+                <div id="loginError" class="error-message"></div>
+                <input type="password" id="novaSenha" name="novaSenha" placeholder="Nova Senha" required><br>
+                <div id="novaSenhaError" class="error-message"></div>
+                <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirmar Senha" required><br>
+                <input type="submit" value="Redefinir Senha">
+            </form>
+            <div id="successMessage" class="success-message"></div>
+        </div>
+    </div>   
 
     <script src="/js/login.js"></script>
+    <script src="/js/redefinirSenha.js"></script>
 </body>
 </html>
