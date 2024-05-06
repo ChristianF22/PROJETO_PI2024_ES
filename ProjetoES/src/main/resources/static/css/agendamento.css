@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #05672d;
+    padding: 10px 20px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #ccc;
+}
+
+.navbar ul li span {
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.container form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container form table {
+    width: 100%;
+}
+
+.container form table tr {
+    margin-bottom: 20px;
+}
+
+.container form table td {
+    padding: 10px;
+}
+
+.container form table td label {
+    display: block;
+    font-weight: bold;
+}
+
+.container form table td input,
+.container form table td select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.container form table td button {
+    width: 100%;
+    background-color: #078438;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.container form table td button:hover {
+    background-color: #05672d; 
+}

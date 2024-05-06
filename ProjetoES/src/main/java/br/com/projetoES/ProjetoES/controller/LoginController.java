@@ -20,13 +20,14 @@ public class LoginController {
     public String loginPage() {
         return "login";
     }
-
+    
     @PostMapping("/login")
     public String login(@RequestParam String login, @RequestParam String senha, Model model) {
         Usuario usuario = usuariosInterface.findByLogin(login);
         
         if (usuario != null && usuario.getSenha().equals(senha)) {
-            return "redirect:/consulta";
+            model.addAttribute("userName", usuario.getNome());
+            return "redirect:/agendamento";
         } else {
             model.addAttribute("error", "Credenciais inválidas. Por favor, tente novamente.");
             return "login";

@@ -11,12 +11,24 @@ CREATE TABLE usuarios (
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabela de Consultas
-CREATE TABLE consultas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT,
-    data_consulta DATE NOT NULL,
-    hora_consulta TIME,
-    descricao VARCHAR(500),
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+-- Tabela de Agendamento
+
+CREATE TABLE Agendamento (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nomePaciente VARCHAR(255),
+    email VARCHAR(255),
+    status ENUM('agendado', 'cancelado', 'realizado'),
+    clinica ENUM('clinica1', 'clinica2', 'clinica3'),
+    medico_id INT,
+    dataHoraAgendamento DATETIME,
+    dataCadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (medico_id) REFERENCES Medico(id)
+);
+
+-- Tabela do medico
+
+CREATE TABLE Medico (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255),
+    especialidade VARCHAR(255)
 );
