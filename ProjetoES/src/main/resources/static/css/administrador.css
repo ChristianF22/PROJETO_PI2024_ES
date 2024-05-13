@@ -15,6 +15,7 @@ body {
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+    align-items: center;
 }
 
 input[type="text"],
@@ -38,4 +39,8 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #078438;
+}
+
+h2{
+    text-align: center;
 }
