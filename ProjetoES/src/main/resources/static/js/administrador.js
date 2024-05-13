@@ -5,7 +5,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     var senha = document.getElementById('senha').value;
 
     if (login === 'admin' && senha === 'admin1234') {
-        window.location.href = '/teste';
+        window.location.href = '/controllerAdmin';
     } else {
         alert('Login ou senha incorretos. Por favor, tente novamente.');
     }
