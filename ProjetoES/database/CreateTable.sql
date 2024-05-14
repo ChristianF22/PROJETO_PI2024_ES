@@ -30,5 +30,6 @@ CREATE TABLE Agendamento (
 CREATE TABLE Medico (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255),
-    especialidade VARCHAR(255)
+    especialidade VARCHAR(255),
+    crm VARCHAR(20) NOT NULL
 );
