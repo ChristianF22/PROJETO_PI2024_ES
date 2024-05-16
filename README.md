@@ -83,4 +83,4 @@ Este projeto visa o desenvolvimento de um sistema de agendamento de consultas m√
 </table>
 
 <h2>Diagrama de Classe</h2>
-<a href="file:///C:/Users/souza/Downloads/Diagrama%20PI.drawio.html"><img src="/readme/png/Diagrama PI.drawio.png" alt="diagrama-de-classe" border="0"></a>
+<img src="/readme/png/Diagrama PI.png" alt="diagrama-de-classe" border="0"></a>
