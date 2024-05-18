@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.projetoES.ProjetoES.DAO.MedicoInterface;
 import br.com.projetoES.ProjetoES.DAO.PacienteInterface;
-import br.com.projetoES.ProjetoES.entities.Medico;
 import br.com.projetoES.ProjetoES.entities.Paciente;
 
 @Controller
@@ -24,9 +23,6 @@ public class PacienteController {
 
     @Autowired
     private PacienteInterface pacienteInterface;
-
-    @Autowired
-    private MedicoInterface medicoInterface;
 
     @GetMapping("/agendamento")
     public String agendamentoPage() {

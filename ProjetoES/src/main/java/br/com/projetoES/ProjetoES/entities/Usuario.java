@@ -1,6 +1,5 @@
 package br.com.projetoES.ProjetoES.entities;
 
-
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -29,6 +28,7 @@ public class Usuario {
     @Column(name = "nome", length = 100, nullable = true)
     private String nome;
     
+    @Column(name = "ativo", nullable = false)
     private boolean ativo;
 
     @Temporal(TemporalType.DATE)
@@ -37,7 +37,8 @@ public class Usuario {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCadastro;
 
-   
+    // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -94,4 +95,3 @@ public class Usuario {
         this.dataCadastro = dataCadastro;
     }
 }
-
