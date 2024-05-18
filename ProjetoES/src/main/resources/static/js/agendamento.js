@@ -1,24 +1,42 @@
 const formulario = document.querySelector("form");
 
+function buscarMedicos() {
+    fetch("http://localhost:8080/api/medicos")
+        .then(response => response.json())
+        .then(data => {
+            const selectMedico = document.getElementById("medicoSelecao");
+            selectMedico.innerHTML = "";
+            data.forEach(medico => {
+                const option = document.createElement("option");
+                option.value = medico.id;
+                option.textContent = `${medico.nome} (${medico.especialidade})`;
+                selectMedico.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error("Erro ao buscar médicos:", error);
+        });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    buscarMedicos();
+});
+
 function agendarConsulta(event) {
     event.preventDefault();
-    
-    const Inome = document.getElementById("nomePaciente");
-    const Iemail = document.getElementById("email");
-    const Iclinica = document.getElementById("clinica");
-    const Imedico = document.getElementById("medico");
-    const Idatahora = document.getElementById("dataHoraAgendamento");
-    const Istatus = document.getElementById("status");
-    const Imedico_id = document.getElementById("medico_id");
+
+    const nomePaciente = document.getElementById("nomePaciente").value;
+    const email = document.getElementById("email").value;
+    const medicoId = document.getElementById("medicoSelecao").value;
+    const dataHoraAgendamento = document.getElementById("dataHoraAgendamento").value;
+    const status = document.getElementById("status").value;
 
     const paciente = {
-        nomePaciente: Inome.value,
-        email: Iemail.value,
-        clinica: Iclinica.value,
-        medico: Imedico.value,
-        dataHoraAgendamento: Idatahora.value,
-        status: Istatus.value,
-        medico_id: Imedico_id.value
+        nomePaciente: nomePaciente,
+        email: email,
+        medicoId: medicoId,
+        dataHoraAgendamento: dataHoraAgendamento,
+        status: status
     };
 
     fetch("http://localhost:8080/agendamento", {
@@ -41,6 +59,18 @@ function agendarConsulta(event) {
     });
 }
 
+formulario.addEventListener('submit', (event) => {
+    agendarConsulta(event);
+});
+
+function limparFormulario() {
+    document.getElementById("nomePaciente").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("medicoSelecao").value = "";
+    document.getElementById("dataHoraAgendamento").value = "";
+    document.getElementById("status").value = "";
+}
+
 function exibirMensagemSucesso(mensagem) {
     const mensagemSucesso = document.querySelector(".mensagem-sucesso");
     if (mensagemSucesso) {
@@ -48,7 +78,7 @@ function exibirMensagemSucesso(mensagem) {
         mensagemSucesso.style.display = "block";
         setTimeout(() => {
             mensagemSucesso.style.display = "none";
-            window.location.href = '/agendamento';
+            window.location.href = '/';
         }, 5000);
     }
 }
@@ -59,18 +89,4 @@ function exibirMensagemErro(mensagem) {
         mensagemErro.textContent = mensagem;
         mensagemErro.style.display = "block";
     }
-}
-
-formulario.addEventListener('submit', (event) => {
-    agendarConsulta(event);
-});
-
-function limparFormulario() {
-    document.getElementById("nomePaciente").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("clinica").value = "";
-    document.getElementById("medico").value = "";
-    document.getElementById("dataHoraAgendamento").value = "";
-    document.getElementById("status").value = "";
-    document.getElementById("medico_id").value = "";
 }

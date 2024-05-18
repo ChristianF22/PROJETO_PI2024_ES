@@ -1,6 +1,7 @@
 package br.com.projetoES.ProjetoES.entities;
 
 import java.sql.Timestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,8 +10,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "agendamento")
+@Table(name = "Agendamento")
 public class Paciente {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -37,7 +39,8 @@ public class Paciente {
     @Column(name = "dataCadastro", insertable = false, updatable = false)
     private Timestamp dataCadastro;
 
-    public Long getId() {
+
+     public Long getId() {
         return id;
     }
 
@@ -93,11 +96,11 @@ public class Paciente {
         this.dataHoraAgendamento = dataHoraAgendamento;
     }
 
-    public Timestamp getDataCadastro(){
+    public Timestamp getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Timestamp dataCadastro){
+    public void setDataCadastro(Timestamp dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 }

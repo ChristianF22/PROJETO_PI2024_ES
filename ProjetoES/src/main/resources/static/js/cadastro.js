@@ -20,8 +20,7 @@ function cadastrarUsuario() {
         dataCadastro: new Date().toISOString()
     };
 
-    // Enviando os dados do usuário para o backend
-    fetch("http://localhost:8080/usuarios", {
+    fetch("http://localhost:8080/api/usuarios", {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -37,7 +36,6 @@ function cadastrarUsuario() {
         }, 2000);
     })
     .catch(function (error) {
-        // Exibindo mensagem de erro
         exibirMensagemErro("Erro ao cadastrar usuário. Por favor, tente novamente.");
         console.log(error);
     });

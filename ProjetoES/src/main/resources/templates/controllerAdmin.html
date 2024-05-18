@@ -46,6 +46,8 @@
         </div>
     </div>
 
+    <br><br>
+
     <div class="container">
       <h1>Lista de Médicos</h1>
       <table class="table">
@@ -54,7 +56,7 @@
                   <th>Nome</th>
                   <th>Especialidade</th>
                   <th>CRM</th>
-                  <th>Ações</th>
+                  <th>AÇÕES</th>
               </tr>
           </thead>
           <tbody id="tabelaMedicos">
@@ -62,6 +64,26 @@
           </tbody>
       </table>
   </div>
+
+  <br><br>
+
+  <div class="container">
+    <h1>Lista de Usuários</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>LOGIN</th>
+                <th>NOME</th>
+                <th>DATA_NASCIMENTO</th>
+                <th>STATUS</th>
+                <th>AÇÕES</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaUsuario">
+            <!-- Os usuários serão inseridos aqui -->
+        </tbody>
+    </table>
+</div>
 
     <div id="mensagemSucesso"></div>
 
@@ -71,6 +93,7 @@
 
     <script th:src="@{/js/controllerAdmin.js}"></script>
     <script th:src="@{/js/medicotab.js}"></script>
+    <script th:src="@{/js/usuariotab.js}"></script>
   
 </body>
 </html>
