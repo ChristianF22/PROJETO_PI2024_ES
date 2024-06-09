@@ -6,72 +6,69 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import br.com.projetoES.ProjetoES.DAO.MedicoInterface;
 import br.com.projetoES.ProjetoES.DAO.PacienteInterface;
 import br.com.projetoES.ProjetoES.entities.Paciente;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
+@RequestMapping("/agendamento")
 public class PacienteController {
+
+    private static final Logger logger = LoggerFactory.getLogger(PacienteController.class);
 
     @Autowired
     private PacienteInterface pacienteInterface;
 
-    @GetMapping("/agendamento")
+       @GetMapping
     public String agendamentoPage() {
         return "agendamento";
     }
 
-    @ResponseBody
-    @PostMapping(value = "/agendamento", consumes = "application/json")
+    @PostMapping("/agendar")
     public ResponseEntity<?> agendarPaciente(@RequestBody Paciente paciente) {
         try {
+            logger.info("Agendando paciente: {}", paciente);
             Paciente pacienteNovo = pacienteInterface.save(paciente);
             return ResponseEntity.ok(pacienteNovo);
         } catch (Exception e) {
+            logger.error("Erro ao agendar consulta", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao agendar consulta: " + e.getMessage());
         }
     }
 
-    @PutMapping("/agendamento/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> editarPaciente(@PathVariable Long id, @RequestBody Paciente pacienteAtualizado) {
-        try {
-            Optional<Paciente> pacienteExistenteOptional = pacienteInterface.findById(id);
-            if (pacienteExistenteOptional.isPresent()) {
-                Paciente pacienteExistente = pacienteExistenteOptional.get();
-                pacienteAtualizado.setId(pacienteExistente.getId());
-                pacienteAtualizado.setMedicoId(pacienteExistente.getMedicoId());
+        Optional<Paciente> pacienteExistenteOptional = pacienteInterface.findById(id);
+        if (pacienteExistenteOptional.isPresent()) {
+            Paciente pacienteExistente = pacienteExistenteOptional.get();
+            pacienteAtualizado.setId(pacienteExistente.getId());
+            pacienteAtualizado.setMedicoId(pacienteExistente.getMedicoId());
+            try {
                 Paciente pacienteAtual = pacienteInterface.save(pacienteAtualizado);
                 return ResponseEntity.ok(pacienteAtual);
-            } else {
-                return ResponseEntity.notFound().build();
+            } catch (Exception e) {
+                return ResponseEntity.status(500).body("Erro ao editar o paciente: " + e.getMessage());
             }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body("Erro ao editar o paciente. Por favor, tente novamente.");
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
-    @DeleteMapping("/agendamento/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> excluirPaciente(@PathVariable Long id) {
-        try {
-            Optional<Paciente> pacienteOptional = pacienteInterface.findById(id);
-            if (pacienteOptional.isPresent()) {
+        Optional<Paciente> pacienteOptional = pacienteInterface.findById(id);
+        if (pacienteOptional.isPresent()) {
+            try {
                 pacienteInterface.deleteById(id);
                 return ResponseEntity.ok("Paciente excluído com sucesso!");
-            } else {
-                return ResponseEntity.notFound().build();
+            } catch (Exception e) {
+                return ResponseEntity.status(500).body("Erro ao excluir o paciente: " + e.getMessage());
             }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body("Erro ao excluir o paciente. Por favor, tente novamente.");
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 }

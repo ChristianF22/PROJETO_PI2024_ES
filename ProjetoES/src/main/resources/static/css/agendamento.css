@@ -45,32 +45,38 @@ body {
     margin-top: 20px;
 }
 
-.container form {
+.container button {
+    background-color: #078438;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.container button:hover {
+    background-color: #05672d;
+}
+
+.modal-content {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.container form table {
-    width: 100%;
+.modal-body form .form-group {
+    margin-bottom: 15px;
 }
 
-.container form table tr {
-    margin-bottom: 20px;
-}
-
-.container form table td {
-    padding: 10px;
-}
-
-.container form table td label {
-    display: block;
+.modal-body form .form-group label {
     font-weight: bold;
 }
 
-.container form table td input,
-.container form table td select {
+.modal-body form .form-group input,
+.modal-body form .form-group select {
     width: calc(100% - 20px);
     padding: 10px;
     border: 1px solid #ccc;
@@ -78,7 +84,7 @@ body {
     font-size: 16px;
 }
 
-.container form table td button {
+.modal-body form .form-group button {
     width: 100%;
     background-color: #078438;
     color: #fff;
@@ -89,6 +95,6 @@ body {
     font-size: 16px;
 }
 
-.container form table td button:hover {
+.modal-body form .form-group button:hover {
     background-color: #05672d; 
 }

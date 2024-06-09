@@ -1,42 +1,39 @@
-const formulario = document.querySelector("form");
+document.addEventListener("DOMContentLoaded", function() {
+    buscarMedicos();
+    const formulario = document.querySelector("#formulario");
+
+    formulario.addEventListener('submit', function(event) {
+        event.preventDefault();
+        agendarConsulta();
+    });
+});
 
 function buscarMedicos() {
     fetch("http://localhost:8080/api/medicos")
-        .then(response => response.json())
-        .then(data => {
-            const selectMedico = document.getElementById("medicoSelecao");
-            selectMedico.innerHTML = "";
-            data.forEach(medico => {
-                const option = document.createElement("option");
-                option.value = medico.id;
-                option.textContent = `${medico.nome} (${medico.especialidade})`;
-                selectMedico.appendChild(option);
-            });
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Erro ao buscar médicos. Por favor, tente novamente.');
+            }
+            return response.json();
         })
-        .catch(error => {
+        .then(function(data) {
+            const selectMedico = document.getElementById("medicoSelecao");
+            selectMedico.innerHTML = data.map(function(medico) {
+                return `<option value="${medico.id}">${medico.nome} (${medico.especialidade})</option>`;
+            }).join("");
+        })
+        .catch(function(error) {
             console.error("Erro ao buscar médicos:", error);
         });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    buscarMedicos();
-});
-
-function agendarConsulta(event) {
-    event.preventDefault();
-
-    const nomePaciente = document.getElementById("nomePaciente").value;
-    const email = document.getElementById("email").value;
-    const medicoId = document.getElementById("medicoSelecao").value;
-    const dataHoraAgendamento = document.getElementById("dataHoraAgendamento").value;
-    const status = document.getElementById("status").value;
-
+function agendarConsulta() {
     const paciente = {
-        nomePaciente: nomePaciente,
-        email: email,
-        medicoId: medicoId,
-        dataHoraAgendamento: dataHoraAgendamento,
-        status: status
+        nomePaciente: document.getElementById("nomePaciente").value,
+        email: document.getElementById("email").value,
+        medicoId: document.getElementById("medicoSelecao").value,
+        dataHoraAgendamento: document.getElementById("dataHoraAgendamento").value,
+        status: document.getElementById("status").value
     };
 
     fetch("http://localhost:8080/agendamento", {
@@ -47,28 +44,26 @@ function agendarConsulta(event) {
         },
         body: JSON.stringify(paciente)
     })
-    .then(res => {
-        if (!res.ok) {
+    .then(function(response) {
+        if (!response.ok) {
             throw new Error('Erro ao agendar a consulta. Por favor, tente novamente.');
         }
-        exibirMensagemSucesso("Agendamento da consulta feita com sucesso.");
-        limparFormulario();
+        return response.json();
     })
-    .catch(error => {
+    .then(function(data) {
+        console.log("Agendamento realizado com sucesso:", data);
+        exibirMensagemSucesso("Agendamento da consulta feito com sucesso.");
+        limparFormulario();
+        $('#agendarConsultaModal').modal('hide');
+    })
+    .catch(function(error) {
+        console.error("Erro ao agendar consulta:", error);
         exibirMensagemErro(error.message);
     });
 }
 
-formulario.addEventListener('submit', (event) => {
-    agendarConsulta(event);
-});
-
 function limparFormulario() {
-    document.getElementById("nomePaciente").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("medicoSelecao").value = "";
-    document.getElementById("dataHoraAgendamento").value = "";
-    document.getElementById("status").value = "";
+    document.getElementById("formulario").reset();
 }
 
 function exibirMensagemSucesso(mensagem) {
@@ -76,7 +71,7 @@ function exibirMensagemSucesso(mensagem) {
     if (mensagemSucesso) {
         mensagemSucesso.textContent = mensagem;
         mensagemSucesso.style.display = "block";
-        setTimeout(() => {
+        setTimeout(function() {
             mensagemSucesso.style.display = "none";
             window.location.href = '/';
         }, 5000);
