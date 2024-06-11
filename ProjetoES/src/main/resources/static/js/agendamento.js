@@ -8,39 +8,45 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function agendarConsulta() {
+    const nomePaciente = document.getElementById("nomePaciente").value;
+    const email = document.getElementById("email").value;
+    const especialidade = document.getElementById("especialidade").value;
+    const dataHoraAgendamento = document.getElementById("dataHoraAgendamento").value;
+    const clinica = document.getElementById("clinica").value;
+
     const paciente = {
-        nomePaciente: document.getElementById("nomePaciente").value,
-        email: document.getElementById("email").value,
-        especialidade: document.getElementById("especialidade").value,
-        dataHoraAgendamento: document.getElementById("dataHoraAgendamento").value,
-        clinica: document.getElementById("clinica").value
+        nomePaciente: nomePaciente,
+        email: email,
+        especialidade: especialidade,
+        dataHoraAgendamento: dataHoraAgendamento,
+        clinica: clinica
     };
 
-    if (!paciente.nomePaciente || !paciente.email || !paciente.especialidade || !paciente.dataHoraAgendamento || !paciente.clinica) {
+    if (!nomePaciente || !email || !especialidade || !dataHoraAgendamento || !clinica) {
         exibirMensagemErro("Por favor, preencha todos os campos.");
         return;
     }
 
-    fetch("/agendamento", {
+    fetch("http://localhost:8080/api/agendamento", {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(paciente)
     })
-    .then(function(response) {
+    .then(response => {
         if (!response.ok) {
-            throw new Error('Erro ao agendar a consulta. Por favor, tente novamente.');
+            throw new Error("Erro ao agendar a consulta. Por favor, tente novamente.");
         }
         return response.json();
     })
-    .then(function(data) {
+    .then(data => {
         console.log("Agendamento realizado com sucesso:", data);
         exibirMensagemSucesso("Agendamento da consulta feito com sucesso.");
         limparFormulario();
         $('#agendarConsultaModal').modal('hide');
     })
-    .catch(function(error) {
+    .catch(error => {
         console.error("Erro ao agendar consulta:", error);
         exibirMensagemErro(error.message);
     });

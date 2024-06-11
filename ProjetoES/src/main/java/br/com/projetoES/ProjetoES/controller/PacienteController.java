@@ -3,10 +3,7 @@ package br.com.projetoES.ProjetoES.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.projetoES.ProjetoES.DAO.PacienteInterface;
@@ -23,44 +20,34 @@ public class PacienteController {
         return "agendamento";
     }
 
-    @PostMapping("/agendamento")
-    public ResponseEntity<?> agendarConsulta(@RequestBody Paciente paciente) {
-        Paciente pacienteNovo = pacienteInterface.save(paciente);
-        return ResponseEntity.ok(pacienteNovo);
+    @PostMapping("/api/agendamento")
+    @ResponseBody
+    public Paciente adicionarPaciente(@RequestBody Paciente paciente) {
+        return pacienteInterface.save(paciente);
     }
 
-    @PutMapping("/agendamento/{id}")
-    public ResponseEntity<?> editarPaciente(@PathVariable Long id, @RequestBody Paciente pacienteAtualizado) {
+    @PutMapping("/api/agendamento/{id}")
+    @ResponseBody
+    public Paciente atualizarPaciente(@PathVariable Long id, @RequestBody Paciente pacienteAtualizado) {
         Optional<Paciente> pacienteExistenteOptional = pacienteInterface.findById(id);
         if (pacienteExistenteOptional.isPresent()) {
             Paciente pacienteExistente = pacienteExistenteOptional.get();
-            pacienteExistente.setNomePaciente(pacienteAtualizado.getNomePaciente());
-            pacienteExistente.setEmail(pacienteAtualizado.getEmail());
-            pacienteExistente.setClinica(pacienteAtualizado.getClinica());
-            pacienteExistente.setEspecialidade(pacienteAtualizado.getEspecialidade());
-            pacienteExistente.setDataHoraAgendamento(pacienteAtualizado.getDataHoraAgendamento());
-
-            Paciente pacienteAtual = pacienteInterface.save(pacienteExistente);
-            return ResponseEntity.ok(pacienteAtual);
+            pacienteAtualizado.setId(pacienteExistente.getId());
+            return pacienteInterface.save(pacienteAtualizado);
         } else {
-            return ResponseEntity.notFound().build();
+            throw new RuntimeException("Paciente não encontrado com o ID: " + id);
         }
     }
 
-    @DeleteMapping("/agendamento/{id}")
-    public ResponseEntity<?> excluirPaciente(@PathVariable Long id) {
+    @DeleteMapping("/api/agendamento/{id}")
+    @ResponseBody
+    public String removerPaciente(@PathVariable Long id) {
         Optional<Paciente> pacienteOptional = pacienteInterface.findById(id);
         if (pacienteOptional.isPresent()) {
             pacienteInterface.deleteById(id);
-            return ResponseEntity.ok("Paciente excluído com sucesso!");
+            return "Agendamento removido com sucesso!";
         } else {
-            return ResponseEntity.notFound().build();
+            throw new RuntimeException("Agendamento não encontrado com o ID: " + id);
         }
-    }
-
-    @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
-    public ResponseEntity<?> handleMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException ex) {
-        return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-                             .body("Tipo de mídia não suportado. Use application/json.");
     }
 }

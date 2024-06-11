@@ -1,40 +1,21 @@
 package br.com.projetoES.ProjetoES.entities;
 
-
-import java.security.Timestamp;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Agendamento")
 public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "nomePaciente", nullable = false)
     private String nomePaciente;
-
-    @Column(nullable = false)
     private String email;
-
-    @Column(nullable = false)
-    private String clinica;
-
-    @Column(nullable = false)
     private String especialidade;
-
-    @Column(name = "dataHoraAgendamento", nullable = false)
-    private Timestamp dataHoraAgendamento;
-
-    @Column(name = "dataCadastro", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Timestamp dataCadastro;
+    private String dataHoraAgendamento;
+    private String clinica;
 
     public Long getId() {
         return id;
@@ -60,14 +41,6 @@ public class Paciente {
         this.email = email;
     }
 
-    public String getClinica() {
-        return clinica;
-    }
-
-    public void setClinica(String clinica) {
-        this.clinica = clinica;
-    }
-
     public String getEspecialidade() {
         return especialidade;
     }
@@ -76,20 +49,19 @@ public class Paciente {
         this.especialidade = especialidade;
     }
 
-    public Timestamp getDataHoraAgendamento() {
+    public String getDataHoraAgendamento() {
         return dataHoraAgendamento;
     }
 
-    public void setDataHoraAgendamento(Timestamp dataHoraAgendamento) {
+    public void setDataHoraAgendamento(String dataHoraAgendamento) {
         this.dataHoraAgendamento = dataHoraAgendamento;
     }
 
-    public Timestamp getDataCadastro() {
-        return dataCadastro;
+    public String getClinica() {
+        return clinica;
     }
 
-    public void setDataCadastro(Timestamp dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public void setClinica(String clinica) {
+        this.clinica = clinica;
     }
 }
-
