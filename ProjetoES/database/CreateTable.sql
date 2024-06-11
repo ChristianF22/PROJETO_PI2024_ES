@@ -3,8 +3,8 @@ use projeto_integrado;
 -- Tebela de usuarios
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    login VARCHAR(200) UNIQUE NOT NULL,
-    senha TEXT NOT NULL,
+    login VARCHAR(50) UNIQUE NOT NULL,
+    senha VARCHAR(100) NOT NULL,
     nome VARCHAR(100) NOT NULL,
     ativo TINYINT(1) DEFAULT 1,
     data_nascimento DATE NOT NULL,
@@ -12,18 +12,17 @@ CREATE TABLE usuarios (
 );
 
 -- Tabela de Agendamento
-
 CREATE TABLE Agendamento (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nomePaciente VARCHAR(255),
-    email VARCHAR(255),
-    status ENUM('agendado', 'cancelado', 'realizado'),
-    clinica ENUM('clinica1', 'clinica2', 'clinica3'),
-    medico_id INT,
-    dataHoraAgendamento DATETIME,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nomePaciente VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    clinica VARCHAR(50) NOT NULL,
+    especialidade VARCHAR(50) NOT NULL,
+    dataHoraAgendamento DATETIME NOT NULL,
     dataCadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (medico_id) REFERENCES Medico(id)
+    UNIQUE(nomePaciente, clinica, dataHoraAgendamento)
 );
+
 
 -- Tabela do medico
 

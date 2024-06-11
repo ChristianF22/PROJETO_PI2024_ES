@@ -1,4 +1,4 @@
-INSERT INTO agendamento (nomePaciente, email, status, clinica, dataHoraAgendamento) 
-VALUES ('Christian Fonseca da Rocha', 'christianfonseca@gmail.com', 'agendado', 'clinica2', '2024-05-05 23:50:07');
+INSERT INTO Agendamento(nomePaciente, email, clinica, especialidade, dataHoraAgendamento)
+VALUES ('Murilo', 'murilo@gamil.com', 'Bezerra de Menezes', 'Pediatria', '2024-06-10 14:00:00');
 
 

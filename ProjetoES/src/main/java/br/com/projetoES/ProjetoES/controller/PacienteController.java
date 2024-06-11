@@ -6,69 +6,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.projetoES.ProjetoES.DAO.PacienteInterface;
 import br.com.projetoES.ProjetoES.entities.Paciente;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Controller
-@RequestMapping("/agendamento")
 public class PacienteController {
-
-    private static final Logger logger = LoggerFactory.getLogger(PacienteController.class);
 
     @Autowired
     private PacienteInterface pacienteInterface;
 
-       @GetMapping
-    public String agendamentoPage() {
+    @GetMapping("/agendamento")
+    public String agendamento() {
         return "agendamento";
     }
 
-    @PostMapping("/agendar")
-    public ResponseEntity<?> agendarPaciente(@RequestBody Paciente paciente) {
-        try {
-            logger.info("Agendando paciente: {}", paciente);
-            Paciente pacienteNovo = pacienteInterface.save(paciente);
-            return ResponseEntity.ok(pacienteNovo);
-        } catch (Exception e) {
-            logger.error("Erro ao agendar consulta", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao agendar consulta: " + e.getMessage());
-        }
+    @PostMapping("/agendamento")
+    public ResponseEntity<?> agendarConsulta(@RequestBody Paciente paciente) {
+        Paciente pacienteNovo = pacienteInterface.save(paciente);
+        return ResponseEntity.ok(pacienteNovo);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/agendamento/{id}")
     public ResponseEntity<?> editarPaciente(@PathVariable Long id, @RequestBody Paciente pacienteAtualizado) {
         Optional<Paciente> pacienteExistenteOptional = pacienteInterface.findById(id);
         if (pacienteExistenteOptional.isPresent()) {
             Paciente pacienteExistente = pacienteExistenteOptional.get();
-            pacienteAtualizado.setId(pacienteExistente.getId());
-            pacienteAtualizado.setMedicoId(pacienteExistente.getMedicoId());
-            try {
-                Paciente pacienteAtual = pacienteInterface.save(pacienteAtualizado);
-                return ResponseEntity.ok(pacienteAtual);
-            } catch (Exception e) {
-                return ResponseEntity.status(500).body("Erro ao editar o paciente: " + e.getMessage());
-            }
+            pacienteExistente.setNomePaciente(pacienteAtualizado.getNomePaciente());
+            pacienteExistente.setEmail(pacienteAtualizado.getEmail());
+            pacienteExistente.setClinica(pacienteAtualizado.getClinica());
+            pacienteExistente.setEspecialidade(pacienteAtualizado.getEspecialidade());
+            pacienteExistente.setDataHoraAgendamento(pacienteAtualizado.getDataHoraAgendamento());
+
+            Paciente pacienteAtual = pacienteInterface.save(pacienteExistente);
+            return ResponseEntity.ok(pacienteAtual);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/agendamento/{id}")
     public ResponseEntity<?> excluirPaciente(@PathVariable Long id) {
         Optional<Paciente> pacienteOptional = pacienteInterface.findById(id);
         if (pacienteOptional.isPresent()) {
-            try {
-                pacienteInterface.deleteById(id);
-                return ResponseEntity.ok("Paciente excluído com sucesso!");
-            } catch (Exception e) {
-                return ResponseEntity.status(500).body("Erro ao excluir o paciente: " + e.getMessage());
-            }
+            pacienteInterface.deleteById(id);
+            return ResponseEntity.ok("Paciente excluído com sucesso!");
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+    public ResponseEntity<?> handleMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException ex) {
+        return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
+                             .body("Tipo de mídia não suportado. Use application/json.");
     }
 }

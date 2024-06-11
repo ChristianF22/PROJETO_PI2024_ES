@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    buscarMedicos();
     const formulario = document.querySelector("#formulario");
 
     formulario.addEventListener('submit', function(event) {
@@ -8,38 +7,23 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-function buscarMedicos() {
-    fetch("http://localhost:8080/api/medicos")
-        .then(function(response) {
-            if (!response.ok) {
-                throw new Error('Erro ao buscar médicos. Por favor, tente novamente.');
-            }
-            return response.json();
-        })
-        .then(function(data) {
-            const selectMedico = document.getElementById("medicoSelecao");
-            selectMedico.innerHTML = data.map(function(medico) {
-                return `<option value="${medico.id}">${medico.nome} (${medico.especialidade})</option>`;
-            }).join("");
-        })
-        .catch(function(error) {
-            console.error("Erro ao buscar médicos:", error);
-        });
-}
-
 function agendarConsulta() {
     const paciente = {
         nomePaciente: document.getElementById("nomePaciente").value,
         email: document.getElementById("email").value,
-        medicoId: document.getElementById("medicoSelecao").value,
+        especialidade: document.getElementById("especialidade").value,
         dataHoraAgendamento: document.getElementById("dataHoraAgendamento").value,
-        status: document.getElementById("status").value
+        clinica: document.getElementById("clinica").value
     };
 
-    fetch("http://localhost:8080/agendamento", {
+    if (!paciente.nomePaciente || !paciente.email || !paciente.especialidade || !paciente.dataHoraAgendamento || !paciente.clinica) {
+        exibirMensagemErro("Por favor, preencha todos os campos.");
+        return;
+    }
+
+    fetch("/agendamento", {
         method: "POST",
         headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(paciente)
