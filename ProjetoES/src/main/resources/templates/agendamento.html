@@ -10,7 +10,7 @@
 <body>
     <div class="container mt-4">
         <h2>Agendar Consulta</h2>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agendarConsultaModal">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#agendarConsultaModal">
             Agendar Nova Consulta
         </button>
     
@@ -24,7 +24,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="formulario" class="form-horizontal">
+                        <form action="/api/agendamento" method="POST" id="formulario" class="form-horizontal">
                             <div class="form-group row">
                                 <label for="nomePaciente" class="col-sm-3 col-form-label">Nome:</label>
                                 <div class="col-sm-9">
@@ -64,9 +64,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="dataHoraAgendamento" class="col-sm-3 col-form-label">Data e Hora:</label>
+                                <label for="dataAgendamento" class="col-sm-3 col-form-label">Data e Hora:</label>
                                 <div class="col-sm-9">
-                                    <input type="datetime-local" id="dataHoraAgendamento" name="dataHoraAgendamento" class="form-control" required>
+                                    <input type="datetime-local" id="dataAgendamento" name="dataAgendamento" class="form-control" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -75,16 +75,32 @@
                                 </div>
                             </div>
                         </form>
-                        <!-- <div class="alert alert-success mensagem-sucesso" role="alert"></div>
-                        <div class="alert alert-danger mensagem-erro" role="alert"></div> -->
                     </div>
                 </div>
             </div>
+        </div>
+
+           <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Clínica</th>
+                        <th>Especialidade</th>
+                        <th>Agendamento</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaPaciente">
+                    <!-- Aqui você pode adicionar as linhas da tabela com os dados -->
+                </tbody>
+            </table>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="/js/agendamento.js"></script>
+    <script src="/js/pacientetab.js"></script>
 </body>
 </html>

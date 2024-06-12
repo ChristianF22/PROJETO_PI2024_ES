@@ -12,17 +12,14 @@ CREATE TABLE usuarios (
 );
 
 -- Tabela de Agendamento
-CREATE TABLE Agendamento (
+CREATE TABLE Consulta (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nomePaciente VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    clinica VARCHAR(50) NOT NULL,
-    especialidade VARCHAR(50) NOT NULL,
-    dataHoraAgendamento DATETIME NOT NULL,
-    dataCadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE(nomePaciente, clinica, dataHoraAgendamento)
+    clinica VARCHAR(255) NOT NULL,
+    especialidade VARCHAR(255) NOT NULL,
+    dataAgendamento DATETIME NOT NULL
 );
-
 
 -- Tabela do medico
 

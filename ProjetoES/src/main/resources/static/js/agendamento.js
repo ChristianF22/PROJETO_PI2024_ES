@@ -3,29 +3,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     formulario.addEventListener('submit', function(event) {
         event.preventDefault();
-        agendarConsulta();
     });
 });
 
-function agendarConsulta() {
-    const nomePaciente = document.getElementById("nomePaciente").value;
-    const email = document.getElementById("email").value;
-    const especialidade = document.getElementById("especialidade").value;
-    const dataHoraAgendamento = document.getElementById("dataHoraAgendamento").value;
-    const clinica = document.getElementById("clinica").value;
-
+document.getElementById("btnAgendar").addEventListener("click", function () {
     const paciente = {
-        nomePaciente: nomePaciente,
-        email: email,
-        especialidade: especialidade,
-        dataHoraAgendamento: dataHoraAgendamento,
-        clinica: clinica
+        paciente: document.getElementById("nomePaciente").value, // Alteração aqui
+        email: document.getElementById("email").value,
+        especialidade: document.getElementById("especialidade").value,
+        dataAgendamento: document.getElementById("dataAgendamento").value,
+        clinica: document.getElementById("clinica").value
     };
-
-    if (!nomePaciente || !email || !especialidade || !dataHoraAgendamento || !clinica) {
-        exibirMensagemErro("Por favor, preencha todos os campos.");
-        return;
-    }
 
     fetch("http://localhost:8080/api/agendamento", {
         method: "POST",
@@ -50,7 +38,8 @@ function agendarConsulta() {
         console.error("Erro ao agendar consulta:", error);
         exibirMensagemErro(error.message);
     });
-}
+});
+
 
 function limparFormulario() {
     document.getElementById("formulario").reset();
