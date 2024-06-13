@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paciente</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/pacientesagendamento.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Gerenciamento de Pacientes</h1>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="h5 mb-0">Adicionar/Editar Paciente</h2>
+        </div>
+        <div class="card-body">
+            <form id="patientForm">
+                <input type="hidden" id="patientId" name="id">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="document">Documento</label>
+                        <input type="text" class="form-control" id="document" name="documento" placeholder="Digite o documento" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="sex">Sexo</label>
+                        <select class="form-control" id="sex" name="sexo" required>
+                            <option value="">Selecione</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="birthdate">Data de Nascimento</label>
+                        <input type="date" class="form-control" id="birthdate" name="data_nascimento" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="name">Nome</label>
+                        <input type="text" class="form-control" id="name" name="nome" placeholder="Digite o nome" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <h2 class="h5 mb-0">Lista de Pacientes</h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Documento</th>
+                        <th>Sexo</th>
+                        <th>Data de Nascimento</th>
+                        <th>Nome</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="patientTableBody">
+                    <!-- Pacientes serão carregados aqui -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/js/pacientesagendamento.js"></script>
+</body>
+</html>

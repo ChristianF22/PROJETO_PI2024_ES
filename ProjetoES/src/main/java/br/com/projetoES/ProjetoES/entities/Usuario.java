@@ -37,8 +37,6 @@ public class Usuario {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCadastro;
 
-    // Getters and Setters
-
     public Long getId() {
         return id;
     }
