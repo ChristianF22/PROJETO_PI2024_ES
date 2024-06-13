@@ -30,6 +30,13 @@ CREATE TABLE Medico (
     crm VARCHAR(20) NOT NULL
 );
 
+-- Tabela do recepcionista
+CREATE TABLE Recep(
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   login VARCHAR(50) NOT NULL,
+   senha VARCHAR(50) NOT NULL
+);
+
 -- Tabela do Paciente
 CREATE TABLE Pacientes (
     id INT PRIMARY KEY AUTO_INCREMENT,

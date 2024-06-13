@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     carregarPacientes();
 
-    // Adiciona um listener para o formulário de paciente
     document.getElementById("patientForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Previne o envio padrão do formulário
+        event.preventDefault();
 
-        // Obtém os dados do formulário
         const pacienteData = {
             documento: document.getElementById("document").value,
             sexo: document.getElementById("sex").value,
@@ -13,14 +11,11 @@ document.addEventListener("DOMContentLoaded", function() {
             nome: document.getElementById("name").value
         };
 
-        // Obtém o ID do paciente, se estiver presente
         const pacienteId = document.getElementById("patientId").value;
 
-        // Define a URL e o método com base na presença do ID do paciente
         const url = pacienteId ? `/api/pacientes/${pacienteId}` : '/api/pacientes';
         const method = pacienteId ? 'PUT' : 'POST';
 
-        // Realiza a requisição fetch para salvar ou atualizar o paciente
         fetch(url, {
             method: method,
             headers: {
@@ -37,8 +32,8 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             console.log('Paciente salvo/atualizado com sucesso:', data);
             alert('Paciente salvo/atualizado com sucesso!');
-            document.getElementById("patientForm").reset(); // Limpa o formulário após salvar/atualizar
-            carregarPacientes(); // Recarrega a lista de pacientes
+            document.getElementById("patientForm").reset(); 
+            carregarPacientes(); 
         })
         .catch(error => {
             console.error('Erro ao salvar/atualizar paciente:', error);
@@ -46,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Função para carregar a lista de pacientes
     function carregarPacientes() {
         fetch('/api/pacientes')
         .then(response => {
