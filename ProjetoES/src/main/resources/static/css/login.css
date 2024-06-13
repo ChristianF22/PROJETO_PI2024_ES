@@ -18,12 +18,14 @@ body {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+select {
     width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 14px;
 }
 
 input[type="submit"] {
@@ -34,13 +36,15 @@ input[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 14px; 
 }
 
 input[type="submit"]:hover {
-    background-color: #078438;
+    background-color: #05632c; 
 }
 
 .error-message {
     color: red;
     text-align: center;
+    margin-top: 10px; 
 }

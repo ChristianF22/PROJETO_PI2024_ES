@@ -6,4 +6,5 @@ import br.com.projetoES.ProjetoES.entities.Medico;
 
 public interface MedicoInterface extends JpaRepository<Medico, Long> {
     
+  
 }

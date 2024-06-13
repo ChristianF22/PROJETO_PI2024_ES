@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.projetoES.ProjetoES.DAO.UsuariosInterface;
+import br.com.projetoES.ProjetoES.entities.Medico;
 import br.com.projetoES.ProjetoES.entities.Usuario;
 
 @Controller
