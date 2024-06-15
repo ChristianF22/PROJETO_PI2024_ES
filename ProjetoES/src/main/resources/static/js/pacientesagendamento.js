@@ -92,25 +92,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
     
     window.editarPaciente = function(id) {
-        fetch(`/api/pacientes/${id}`)
+        fetch(`/api/consultamedica/${id}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Erro ao carregar paciente para edição.');
+                throw new Error('Erro ao carregar consulta para edição.');
             }
             return response.json();
         })
         .then(data => {
-            console.log('Paciente para edição:', data);
-            
-            document.getElementById("patientId").value = data.id;
-            document.getElementById("document").value = data.documento;
-            document.getElementById("sex").value = data.sexo;
-            document.getElementById("birthdate").value = data.dataNascimento;
-            document.getElementById("name").value = data.nome;
+            console.log('Consulta para edição:', data);
+        
+            document.getElementById('consultaId').value = data.id;
+            document.getElementById('paciente').value = data.paciente;
+            document.getElementById('medico').value = data.medico;
+            document.getElementById('queixa').value = data.queixa;
+            document.getElementById('diagnostico').value = data.diagnostico;
         })
         .catch(error => {
-            console.error('Erro ao carregar paciente para edição:', error);
-            alert('Erro ao carregar paciente para edição. Verifique o console para mais detalhes.');
+            console.error('Erro ao carregar consulta para edição:', error);
+            alert('Erro ao carregar consulta para edição. Verifique o console para mais detalhes.');
         });
     }
 

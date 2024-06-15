@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Médico</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url("/image/pngs/replogin.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container-all {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+            background-color: rgba(7, 132, 56, 0.8); 
+            color: #fff;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container-big {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .logo-topo {
+            max-width: 50px; 
+            height: auto;
+        }
+
+        .login-container1 {
+            background-color: rgba(255, 255, 255, 0.9); 
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: 150px auto 0; 
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-container1 h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        #loginForm1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #loginForm1 input[type="text"],
+        #loginForm1 input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        #loginForm1 input[type="text"]:focus,
+        #loginForm1 input[type="password"]:focus {
+            border-color: #078438;
+            outline: none;
+        }
+
+        #loginForm1 input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #078438;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        #loginForm1 input[type="submit"]:hover {
+            background-color: #056a2a;
+            transform: scale(1.02);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("/image/pngs/replogin.jpg"); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            filter: blur(10px); 
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <header class="container-all">
+        <div class="container-big">
+            <div>
+                <a href="/">
+                    <img src="/image/pngs/logo.jpg" alt="Logo" class="logo-topo">
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="login-container1">
+        <h2>Medico</h2>
+        <form id="loginForm1">
+            <input type="text" id="login" name="login" placeholder="Login" required><br>
+            <input type="password" id="senha" name="senha" placeholder="Senha" required><br>
+            <input type="submit" value="Login">
+        </form>
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loginForm = document.getElementById('loginForm1');
+            const errorMessage = document.getElementById('errorMessage');
+
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const loginInput = document.getElementById('login').value;
+                const senhaInput = document.getElementById('senha').value;
+
+                if (loginInput === 'medico' && senhaInput === 'senha123') {
+                    window.location.href = '/consultamedica';
+                } else {
+                    errorMessage.textContent = 'Credenciais inválidas. Por favor, tente novamente.';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

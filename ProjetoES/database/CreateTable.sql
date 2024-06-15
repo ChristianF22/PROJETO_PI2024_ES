@@ -54,3 +54,10 @@ CREATE TABLE consultas (
     medico VARCHAR(100) NOT NULL,
     diagnostico VARCHAR(255) NOT NULL
 );
+
+-- Tabela MedicoLog
+CREATE TABLE MedicoLog(
+   id INT AUTO_INCREMENT PRIMARY KEY,
+   login VARCHAR(50) NOT NULL,
+   senha VARCHAR(50) NOT NULL
+);

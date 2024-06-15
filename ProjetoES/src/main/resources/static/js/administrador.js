@@ -1,10 +1,10 @@
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault(); 
 
-    var login = document.getElementById('login').value;
-    var senha = document.getElementById('senha').value;
+    const login1 = document.getElementById('login1').value;
+    const senha1 = document.getElementById('senha1').value;
 
-    if (login === 'admin' && senha === 'admin1234') {
+    if (login1 === 'admin' && senha1 === 'admin1234') {
         window.location.href = '/controllerAdmin';
     } else {
         alert('Login ou senha incorretos. Por favor, tente novamente.');

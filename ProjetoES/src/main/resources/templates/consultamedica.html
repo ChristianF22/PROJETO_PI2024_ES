@@ -1,11 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Paciente</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/pacientesagendamento.css">
 </head>
 <body>
-    <h1>Teste</h1>
+    <header class="container-all flex-vert">
+        <div class="container-big flex-hori">
+            <div>
+                <a href="/">
+                    <img src="/image/pngs/logo.jpg" alt="Logo" class="logo-topo">
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Gerenciamento de Consultas</h1>
+
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h2 class="h5 mb-0">Adicionar Consulta</h2>
+            </div>
+            <div class="card-body">
+                <form id="consultaForm">
+                    <input type="hidden" id="consultaId" name="consultaId" value="">
+                    <div class="form-group">
+                        <label for="paciente">Paciente</label>
+                        <input type="text" class="form-control" id="paciente" name="paciente"
+                            placeholder="Nome do Paciente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medico">Médico</label>
+                        <input type="text" class="form-control" id="medico" name="medico"
+                            placeholder="Nome do Médico" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="queixa">Queixa</label>
+                        <textarea class="form-control" id="queixa" name="queixa" rows="3"
+                            placeholder="Descreva a queixa do paciente" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="diagnostico">Diagnóstico</label>
+                        <textarea class="form-control" id="diagnostico" name="diagnostico" rows="3"
+                            placeholder="Diagnóstico realizado" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header bg-dark text-white">
+                <h2 class="h5 mb-0">Lista de Consultas</h2>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Paciente</th>
+                            <th>Médico</th>
+                            <th>Queixa</th>
+                            <th>Diagnóstico</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="consultaTableBody">
+                        <!-- Aqui serão inseridas as linhas da tabela dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/medicoconsultas.js"></script>
 </body>
 </html>
