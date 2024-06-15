@@ -46,19 +46,11 @@ CREATE TABLE Pacientes (
     nome VARCHAR(100) NOT NULL
 );
 
--- Tabela do IMC
-CREATE TABLE IMC (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    peso DECIMAL(5,2) NOT NULL,
-    altura DECIMAL(4,2) NOT NULL,
-    resultado DECIMAL(5,2) GENERATED ALWAYS AS (peso / (altura * altura)) STORED
-);
-
 -- Tabela da Consulta
-
-CREATE TABLE ConsultaPaciente (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    queixa_principal TEXT NOT NULL,
+CREATE TABLE consultas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    paciente VARCHAR(100) NOT NULL,
+    queixa VARCHAR(255) NOT NULL,
     medico VARCHAR(100) NOT NULL,
-    diagnostico TEXT NOT NULL
+    diagnostico VARCHAR(255) NOT NULL
 );
