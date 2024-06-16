@@ -26,7 +26,7 @@
                 <a href="#sobre">Sobre</a>
                 <a href="#contato">Contato</a>
                 <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
-                <a href="/cadastro">Registrar</a>
+                <a href="#" data-toggle="modal" data-target="#cadastro">Registrar</a>
             </nav>
         </div>
     </header>
@@ -162,6 +162,48 @@
         </div>
     </div>
 
+    <div class="modal fade" id="cadastro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/usuarios" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="login">Login:</label>
+                            <input type="text" id="login" name="login" class="form-control" placeholder="Login" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nome">Nome:</label>
+                            <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha:</label>
+                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="data_nascimento">Data de Nascimento:</label>
+                            <input type="date" id="data_nascimento" name="data_nascimento" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="alert alert-success mensagem-sucesso" style="display: none;">
+                        Usuário cadastrado com sucesso.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="/js/cadastro.js"></script>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -2,6 +2,7 @@ package br.com.projetoES.ProjetoES.entities;
 
 import java.time.LocalDate;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -60,4 +61,6 @@ public class PacientesAgendamento {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+  
 }
